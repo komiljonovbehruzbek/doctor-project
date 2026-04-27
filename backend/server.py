@@ -12,7 +12,7 @@ import jwt
 from datetime import datetime, timezone, timedelta
 from typing import List, Optional, Literal
 from fastapi import FastAPI, APIRouter, HTTPException, Request, Response, Depends, Query
-from starlette.middleware.cors import CORSMiddleware
+from fastapi.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic import BaseModel, Field, EmailStr
 
