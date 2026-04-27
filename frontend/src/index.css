@@ -1,0 +1,226 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap");
+
+:root {
+    --bg: #fafaf9;
+    --bg-2: #f5f5f4;
+    --bg-3: #e7e1d8;
+    --ink: #1c1917;
+    --ink-2: #57534e;
+    --line: #e7e5e4;
+    --brand: #c25e3e;
+    --brand-2: #a64d32;
+    --moss: #687157;
+    --danger: #991b1b;
+}
+
+@layer base {
+    :root {
+        --background: 60 9% 98%;
+        --foreground: 24 9.8% 10%;
+        --card: 0 0% 100%;
+        --card-foreground: 24 9.8% 10%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 24 9.8% 10%;
+        --primary: 16 53% 50%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 60 5% 96%;
+        --secondary-foreground: 24 9.8% 10%;
+        --muted: 60 5% 96%;
+        --muted-foreground: 25 5.3% 44.7%;
+        --accent: 30 19% 88%;
+        --accent-foreground: 24 9.8% 10%;
+        --destructive: 0 70% 35%;
+        --destructive-foreground: 0 0% 100%;
+        --border: 20 6% 90%;
+        --input: 20 6% 90%;
+        --ring: 16 53% 50%;
+        --radius: 0.5rem;
+        --chart-1: 16 53% 50%;
+        --chart-2: 90 9% 39%;
+        --chart-3: 25 30% 60%;
+        --chart-4: 30 19% 78%;
+        --chart-5: 24 9.8% 30%;
+    }
+}
+
+* {
+    border-color: hsl(var(--border));
+}
+
+html,
+body,
+#root {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "ss01", "cv11";
+}
+
+.font-serif {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+}
+
+.eyebrow {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-weight: 500;
+    color: var(--ink-2);
+}
+
+::selection {
+    background: var(--brand);
+    color: #fff;
+}
+
+/* Leaflet global */
+.leaflet-container {
+    font-family: "Manrope", sans-serif;
+    border-radius: 12px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: #d6d3d1;
+    border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a29e;
+}
+
+/* Reveal animation */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.reveal {
+    animation: fadeUp 0.8s ease forwards;
+}
+.reveal-delay-1 {
+    animation-delay: 0.1s;
+    opacity: 0;
+}
+.reveal-delay-2 {
+    animation-delay: 0.2s;
+    opacity: 0;
+}
+.reveal-delay-3 {
+    animation-delay: 0.3s;
+    opacity: 0;
+}
+
+/* Soft grain overlay */
+.grain {
+    position: relative;
+}
+.grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)' /></svg>");
+}
+
+/* Marquee */
+@keyframes marquee {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+.marquee {
+    animation: marquee 36s linear infinite;
+}
+
+/* Underline link */
+.link-underline {
+    position: relative;
+}
+.link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.link-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Buttons */
+.btn-brand {
+    background: var(--brand);
+    color: #fff;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.btn-brand:hover {
+    background: var(--brand-2);
+}
+
+.btn-ghost-ink {
+    border: 1px solid var(--ink);
+    color: var(--ink);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.btn-ghost-ink:hover {
+    background: var(--ink);
+    color: #fff;
+}
+
+/* Pulse ring for clock-in btn */
+@keyframes pulseRing {
+    0% {
+        box-shadow: 0 0 0 0 rgba(194, 94, 62, 0.4);
+    }
+    100% {
+        box-shadow: 0 0 0 24px rgba(194, 94, 62, 0);
+    }
+}
+.pulse-ring {
+    animation: pulseRing 1.6s ease-out infinite;
+}
+
+/* Tilted product cards on hover */
+.tilt-card {
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.tilt-card:hover {
+    transform: translateY(-6px);
+}

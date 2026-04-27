@@ -1,0 +1,5 @@
+/* App-level CSS reset */
+.App {
+    min-height: 100vh;
+    background: var(--bg);
+}
