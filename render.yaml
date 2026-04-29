@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: aura-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m uvicorn server:app --host 0.0.0.0 --port 10000
+    autoDeploy: false
+    envVars:
+      - key: MONGO_URL
+        scope: build,runtime
+      - key: DB_NAME
+        value: doctor_db
+      - key: JWT_SECRET
+        scope: build,runtime
+      - key: ADMIN_EMAIL
+        value: admin@aura.uz
+      - key: ADMIN_PASSWORD
+        scope: build,runtime
+      - key: DIRECTOR_EMAIL
+        value: director@aura.uz
+      - key: DIRECTOR_PASSWORD
+        scope: build,runtime
+      - key: FRONTEND_URL
+        value: https://your-frontend-url.com
